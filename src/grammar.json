@@ -65,6 +65,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "bail_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "expression_statement"
         }
       ]
@@ -637,6 +641,27 @@
         {
           "type": "STRING",
           "value": "raise"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ";"
+        }
+      ]
+    },
+    "bail_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "bail"
         },
         {
           "type": "FIELD",
