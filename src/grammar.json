@@ -29,6 +29,10 @@
         },
         {
           "type": "SYMBOL",
+          "name": "satellite_declaration"
+        },
+        {
+          "type": "SYMBOL",
           "name": "type_declaration"
         },
         {
@@ -57,15 +61,15 @@
         },
         {
           "type": "SYMBOL",
+          "name": "send_statement"
+        },
+        {
+          "type": "SYMBOL",
           "name": "break_statement"
         },
         {
           "type": "SYMBOL",
           "name": "continue_statement"
-        },
-        {
-          "type": "SYMBOL",
-          "name": "bail_statement"
         },
         {
           "type": "SYMBOL",
@@ -310,6 +314,76 @@
         {
           "type": "STRING",
           "value": "}"
+        }
+      ]
+    },
+    "satellite_declaration": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "satl"
+        },
+        {
+          "type": "FIELD",
+          "name": "name",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "with"
+        },
+        {
+          "type": "FIELD",
+          "name": "channel",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "FIELD",
+          "name": "body",
+          "content": {
+            "type": "SYMBOL",
+            "name": "block"
+          }
+        }
+      ]
+    },
+    "send_statement": {
+      "type": "SEQ",
+      "members": [
+        {
+          "type": "STRING",
+          "value": "send"
+        },
+        {
+          "type": "FIELD",
+          "name": "value",
+          "content": {
+            "type": "SYMBOL",
+            "name": "_expression"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": "to"
+        },
+        {
+          "type": "FIELD",
+          "name": "channel",
+          "content": {
+            "type": "SYMBOL",
+            "name": "identifier"
+          }
+        },
+        {
+          "type": "STRING",
+          "value": ";"
         }
       ]
     },
@@ -656,27 +730,6 @@
         }
       ]
     },
-    "bail_statement": {
-      "type": "SEQ",
-      "members": [
-        {
-          "type": "STRING",
-          "value": "bail"
-        },
-        {
-          "type": "FIELD",
-          "name": "value",
-          "content": {
-            "type": "SYMBOL",
-            "name": "_expression"
-          }
-        },
-        {
-          "type": "STRING",
-          "value": ";"
-        }
-      ]
-    },
     "break_statement": {
       "type": "SEQ",
       "members": [
@@ -745,6 +798,14 @@
         },
         {
           "type": "SYMBOL",
+          "name": "launch_expression"
+        },
+        {
+          "type": "SYMBOL",
+          "name": "recv_expression"
+        },
+        {
+          "type": "SYMBOL",
           "name": "identifier"
         },
         {
@@ -772,6 +833,48 @@
           "name": "grouped_expression"
         }
       ]
+    },
+    "launch_expression": {
+      "type": "PREC",
+      "value": 9,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "launch"
+          },
+          {
+            "type": "FIELD",
+            "name": "satellite",
+            "content": {
+              "type": "SYMBOL",
+              "name": "identifier"
+            }
+          }
+        ]
+      }
+    },
+    "recv_expression": {
+      "type": "PREC",
+      "value": 9,
+      "content": {
+        "type": "SEQ",
+        "members": [
+          {
+            "type": "STRING",
+            "value": "recv"
+          },
+          {
+            "type": "FIELD",
+            "name": "handle",
+            "content": {
+              "type": "SYMBOL",
+              "name": "_expression"
+            }
+          }
+        ]
+      }
     },
     "binary_expression": {
       "type": "CHOICE",
